@@ -5,7 +5,7 @@
               require_once $filename;
           }
           else {
-              return 'Nie odnaleniono pliku '.$filename;
+              return 'Komunikat błędu: Nie odnaleniono pliku '.$filename;
           }
         }
     }

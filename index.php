@@ -31,14 +31,15 @@
             $FILE = new FILE();
             $ERROR = new ERROR();
             
-            $FILE->FileExists('settings/database.php');
-            $FILE->FileExists('class/database.php');
-            
             $ERROR->ViewError($FILE->FileExists('settings/database.php'));
             $ERROR->ViewError($FILE->FileExists('class/database.php'));
             
-            $DATABASE = new DATABASE();
-            $ERROR->ViewError($DATABASE->DATABASE_CONNECT(DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD));
+            $DATABASE = new DATABASE(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME);
+            $ERROR->ViewError($DATABASE->ErrorConnect());
+
+            
+            
+            $DATABASE->close();
         ?>
     </body>
 </html>
