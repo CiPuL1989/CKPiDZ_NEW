@@ -8,36 +8,42 @@
     <head>
         <title>CKPiDZ Ruda Śląska</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/Style.css"/>
     </head>
     <body>
         <?php
-            $filename = 'class/file.php';
-            if(file_exists($filename)) {
-                require_once $filename;
+            $Filename = 'class/File.php';
+            if(file_exists($Filename)) {
+                require_once $Filename;
             }
             else {
-                echo '<p class="error">Nie odnaleziono pliku '.$filename.'</p>';
+                echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';
             }
             
-            $filename = 'class/error.php';
-            if(file_exists($filename)) {
-                require_once $filename;
+            $Filename = 'class/ShowMessage.php';
+            if(file_exists($Filename)) {
+                require_once $Filename;
             }
             else { 
-                echo '<p class="error">Nie odnaleziono pliku '.$filename.'</p>';
+                echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';
             }
 
             $FILE = new FILE();
-            $ERROR = new ERROR();
+            $SHOWMESSAGE = new SHOWMESSAGE();
             
-            $ERROR->ViewError($FILE->FileExists('settings/database.php'));
-            $ERROR->ViewError($FILE->FileExists('class/database.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/Settings.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/Database.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/CheckInput.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/SendEmail.php'));
             
             $DATABASE = new DATABASE(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME);
-            $ERROR->ViewError($DATABASE->ErrorConnect());
-
+            $CHECKINPUT = new CHECKINPUT();
+            $SENDMAIL = new SENDEMAIL();
             
+            $SHOWMESSAGE->ViewErrorMessage($DATABASE->ErrorConnect());
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('subpages/authorization/Registration.php'));
+
+            //KOD
             
             $DATABASE->close();
         ?>

@@ -1,11 +1,12 @@
 <?php
     class FILE {
-        public function FileExists($filename) {
-          if(file_exists($filename)){
-              require_once $filename;
+        public function FileExists($Filename) {
+          if(file_exists($Filename)){
+              require_once $Filename;
+              return TRUE;
           }
           else {
-              return 'Komunikat błędu: Nie odnaleniono pliku '.$filename;
+              return 'Nie odnaleniono pliku '.$Filename;
           }
         }
     }

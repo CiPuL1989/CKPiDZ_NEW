@@ -6,7 +6,10 @@
         
         public function ErrorConnect() {
             if(mysqli_connect_errno()) {
-                return 'Komunikat błędu: Brak połączenia z bazą danych '.mysqli_connect_errno().' '. mysqli_connect_error();
+                return 'Brak połączenia z bazą danych '.mysqli_connect_errno().' '. mysqli_connect_error();
+            }
+            else {
+                return TRUE;
             }
         }
     }
