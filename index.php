@@ -32,18 +32,19 @@
             $SHOWMESSAGE = new SHOWMESSAGE();
             
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/Settings.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('subpages/Menu.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/Database.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/CheckInput.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/SendEmail.php'));
             
             $DATABASE = new DATABASE(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME);
-            $CHECKINPUT = new CHECKINPUT();
-            $SENDMAIL = new SENDEMAIL();
-            
             $SHOWMESSAGE->ViewErrorMessage($DATABASE->ErrorConnect());
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('subpages/authorization/Registration.php'));
-
+            
             //KOD
+            $PAGE = $_GET['Page'];
+            if(!empty($PAGE)) {
+                $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists($PAGE));
+            }
             
             $DATABASE->close();
         ?>
