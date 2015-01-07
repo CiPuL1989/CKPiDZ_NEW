@@ -37,8 +37,8 @@
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/CheckInput.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/SendEmail.php'));
             
-            $DATABASE = new DATABASE(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME);
-            $SHOWMESSAGE->ViewErrorMessage($DATABASE->ErrorConnect());
+            $DATABASE = new DATABASE();
+            $SHOWMESSAGE->ViewErrorMessage($DATABASE->Connect(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME, DATABASE_CHARSET));
             
             //KOD
             $PAGE = $_GET['Page'];
@@ -46,7 +46,7 @@
                 $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists($PAGE));
             }
             
-            $DATABASE->close();
+            $SHOWMESSAGE->ViewErrorMessage($DATABASE->Close());
         ?>
     </body>
 </html>
