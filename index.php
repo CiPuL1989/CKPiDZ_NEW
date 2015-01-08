@@ -32,21 +32,18 @@
             $SHOWMESSAGE = new SHOWMESSAGE();
             
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/Settings.php'));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/TemplateEmailMessage.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('subpages/Menu.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/Database.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/CheckInput.php'));
             $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/SendEmail.php'));
-            
-            $DATABASE = new DATABASE();
-            $SHOWMESSAGE->ViewErrorMessage($DATABASE->Connect(DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME, DATABASE_CHARSET));
+            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/User.php'));
             
             //KOD
             $PAGE = $_GET['Page'];
             if(!empty($PAGE)) {
                 $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists($PAGE));
             }
-            
-            $SHOWMESSAGE->ViewErrorMessage($DATABASE->Close());
         ?>
     </body>
 </html>

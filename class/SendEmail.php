@@ -2,8 +2,8 @@
     class SENDEMAIL {
         private $ActivationCode = 0;
         
-        public function GenerateActivationCode($Lenght){
-            $this->ActivationCode = substr(md5(date("d.m.Y.H.i.s").rand(1,1000000)) , 0 , $Lenght);
+        public function GenerateActivationCode(){
+            $this->ActivationCode = md5(time().rand());
         }
         
         public function GetActivationCode() {

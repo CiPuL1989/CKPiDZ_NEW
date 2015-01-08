@@ -5,7 +5,7 @@
         public function Connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASSWORD, $DATABASE_NAME, $DATABASE_CHARSET) {
             $this->Connection = new mysqli($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASSWORD, $DATABASE_NAME);
             
-            if($this->Connection->connect_errno) {
+            if(mysqli_connect_error()) {
                 return 'Połączenie z bazą danych zakończone niepowodzeniem '.mysqli_connect_errno().' '. mysqli_connect_error();
             }
             else {
@@ -15,23 +15,31 @@
         }
         
         public function QuerySetValue($Query) {
-            $Query = $this->Connection->real_escape_string($Query);
+            echo $Query; 
             
-            if($this->Connection->query($Query)) {
+            //$Query = $this->Connection->real_escape_string($Query);
+            
+            if($this->Connection->query($Query) === TRUE) {
+                echo 'TRUE';
                 return TRUE;
             }
             else {
+                echo 'FALSE';
                 return 'Zapytanie do bazy danych zakończone niepowodzeniem';
             }
         }
         
         public function QueryGetValue($Query){
-            $Query = $this->Connection->real_escape_string($Query);
+            echo $Query; 
+            
+            //$Query = $this->Connection->real_escape_string($Query);
             
             if($Result = $this->Connection->query($Query)) {
+                echo 'TRUE';
                 return $Result;
             }
             else {
+                echo 'FALSE';
                 return 'Zapytanie do bazy danych zakończone niepowodzeniem';
             }
         }
