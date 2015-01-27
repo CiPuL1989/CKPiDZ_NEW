@@ -1,4 +1,1 @@
-<ul>
-    <li><a href="index.php?Page=subpages/authorization/Registration.php">Rejestracja</a></li>
-</ul>
-
+<ol>    <li><a href="index.php?Page=Register">Rejestracja</a></li>    <li><a href="index.php?Page=ActiveAccount">Aktywacja</a></li></ol>

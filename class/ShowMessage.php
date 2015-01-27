@@ -1,9 +1,1 @@
-<?php
-    class SHOWMESSAGE {
-        public function ViewErrorMessage($Message) {
-            if($Message != NULL && $Message !== TRUE){
-                echo '<p class="error">Komunikat błędu: '.$Message.'.</p>';
-            }
-        }
-    }
-?>
+<?php    class SHOWMESSAGE {        private $MessageCode;                public function LoadMessageCode($Filename) {            if(file_exists($Filename)) {                include $Filename;            }            else {                 echo '<p class="error">Nie odnaleziono pliku '.$Filename.'</p>';            }            $this->MessageCode = $MessageCode;        }                public function ViewMessage($Message) {            if($Message !== NULL && $Message !== TRUE){                if(array_key_exists($Message, $this->MessageCode)){                    $pattern = '/^S+[0-9]+$/';                                        if(preg_match($pattern, $Message)) {                        echo '<p class="SuccessMessage">'.$this->MessageCode[$Message].'.</p>';                    }                    else {                        echo '<p class="ErrorMessage">'.$this->MessageCode[$Message].'.</p>';                    }                }                else {                    echo '<p class="error">Podany niepoprawny kod błędu: '.$Message.'.</p>';                }            }            else {                return TRUE;            }        }    }?>

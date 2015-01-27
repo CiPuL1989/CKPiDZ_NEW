@@ -1,49 +1,1 @@
-<?php
-    session_start();
-    session_regenerate_id();
-?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>CKPiDZ Ruda Śląska</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" type="text/css" href="css/Style.css"/>
-    </head>
-    <body>
-        <?php
-            $Filename = 'class/File.php';
-            if(file_exists($Filename)) {
-                require_once $Filename;
-            }
-            else {
-                echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';
-            }
-            
-            $Filename = 'class/ShowMessage.php';
-            if(file_exists($Filename)) {
-                require_once $Filename;
-            }
-            else { 
-                echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';
-            }
-
-            $FILE = new FILE();
-            $SHOWMESSAGE = new SHOWMESSAGE();
-            
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/Settings.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('settings/TemplateEmailMessage.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('subpages/Menu.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/Database.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/CheckInput.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/SendEmail.php'));
-            $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists('class/User.php'));
-            
-            //KOD
-            $PAGE = $_GET['Page'];
-            if(!empty($PAGE)) {
-                $SHOWMESSAGE->ViewErrorMessage($FILE->FileExists($PAGE));
-            }
-        ?>
-    </body>
-</html>
+<?php    session_start();    session_regenerate_id();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">    <head>        <title>CKPiDZ Ruda Śląska</title>        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>        <link rel="stylesheet" type="text/css" href="css/Style.css"/>    </head>    <body>        <?php            $Filename = 'class/File.php';            if(file_exists($Filename)) {                require_once $Filename;            }            else {                echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';            }            $Filename = 'class/ShowMessage.php';            if(file_exists($Filename)) {                require_once $Filename;            }            else {                 echo '<p class="error">Komunikat błędu: Nie odnaleziono pliku '.$Filename.'</p>';            }            $FILE = new FILE();            $SHOWMESSAGE = new SHOWMESSAGE();            $SHOWMESSAGE->LoadMessageCode('settings/MessageCode.php');            $SHOWMESSAGE->ViewMessage($FILE->FileExists('settings/Settings.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('settings/MessageEmail.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('class/Database.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('class/CheckInput.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('class/SendEmail.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('class/User.php'));            $SHOWMESSAGE->ViewMessage($FILE->FileExists('subpages/Menu.php'));                        $Page = $_GET['Page'];            $Table = array(                'Register' => 'subpages/authorization/Registration.php',                'ActiveAccount' => 'subpages/authorization/Activation.php');                        if(array_key_exists($Page, $Table)) {                $SHOWMESSAGE->ViewMessage($FILE->FileExists($Table[$Page]));            }            else {                echo 'LOAD DEFAULT PAGE';            }        ?>    </body></html>

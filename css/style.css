@@ -1,3 +1,7 @@
-.error {
+.ErrorMessage {
     color: red;
+}
+
+.SuccessMessage {
+    color: green;
 }
