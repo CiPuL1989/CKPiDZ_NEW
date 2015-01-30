@@ -1,1 +1,1 @@
-<ol>    <li><a href="index.php?Page=Register">Rejestracja</a></li>    <li><a href="index.php?Page=ActiveAccount">Aktywacja</a></li></ol>
+<p>Użytkownik</p><ol>    <li><a href="index.php?Page=UserRegistration">Rejestracja</a></li>    <li><a href="index.php?Page=AccountActivation">Aktywacja</a></li></ol>    <p>Administrator<ol>    <li><a href="index.php?Page=UserActivation">Aktywacja użytkowników</a></li></ol>    
