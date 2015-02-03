@@ -1,7 +1,7 @@
-<form name="Login" method="post" action="index.php?Page=UserLogin">
+<form name="UserLogin" method="post" action="index.php?Page=UserLogin">
     <input type="text" name="Email" value="Adres Email" onfocus="" onblur="">
     <input type="password" name="Password" value="Password" onfocus="" onblur="">
-    <a onclick="document.Login.submit()">Zaloguj</a>
+    <a onclick="document.UserLogin.submit()">Zaloguj</a>
 </form>
 
 <?php
@@ -13,12 +13,12 @@
         $Password = $_POST['Password'];
 
         $EmailCheck = '/^([a-zA-Z0-9\._-]+)@([a-zA-Z0-9\._-]+)\.([a-zA-Z]+)$/';
-        $PasswordCheck = '/^[a-zA-Z0-9]{8,16}$/';
+        $PasswordCheck = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/';
 
         if($INPUT->CheckSign($Email, $EmailCheck) == FALSE) {
             $MESSAGE->ViewMessage('E42');
         }
-        else if($INPUT->CheckLenght($Password, 8, 16) == FALSE) {
+        else if($INPUT->CheckSign($Password, $PasswordCheck) == FALSE) {
             $MESSAGE->ViewMessage('E44');
         }
         else {

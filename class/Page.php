@@ -18,11 +18,11 @@
                     require_once $this->PageList[$FileName];
                 }
                 else {
-                    echo 'LOAD DEFAULT PAGE1';
+                    echo 'LOAD DEFAULT PAGE';
                 }
             }
             else {
-                echo 'LOAD DEFAULT PAGE2';
+                echo 'LOAD DEFAULT PAGE';
             }
         }
     }
